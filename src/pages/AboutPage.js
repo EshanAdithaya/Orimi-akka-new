@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Globe2, Award, Users, Target, BookOpen, Clock } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const milestones = [
     { year: "2015", title: "Foundation", description: "Established in Colombo with a vision to connect Sri Lankan students with Japanese education." },
     { year: "2017", title: "First Partnership", description: "Signed MOU with top 5 Japanese universities for direct student placement." },

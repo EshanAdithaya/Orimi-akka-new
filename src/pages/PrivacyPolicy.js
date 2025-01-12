@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Shield, Lock, Eye, FileText, Database, Bell, Settings, Mail } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const sections = [
     {
       icon: <Shield className="w-6 h-6" />,

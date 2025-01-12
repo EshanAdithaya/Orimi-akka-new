@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   MapPin, 
   Phone, 
@@ -15,6 +15,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const ContactPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

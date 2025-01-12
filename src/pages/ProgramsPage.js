@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, Book, Clock, CircleDollarSign, GraduationCap, Building2, ChevronDown, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const ProgramsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [selectedType, setSelectedType] = useState('All');
   const [selectedDuration, setSelectedDuration] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
