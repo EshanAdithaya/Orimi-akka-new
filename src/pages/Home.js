@@ -44,7 +44,7 @@ const HeroCarousel = () => {
       setCurrentSlide(getNextSlide);
       setTimeout(() => {
         setIsTransitioning(false);
-      }, 500); // Match this with transition duration
+      }, 500);
     }
   };
 
@@ -64,37 +64,10 @@ const HeroCarousel = () => {
     >
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0zMCAzMG0tMjAgMGEyMCwyMCAwIDEsMCAyMCwwYTIwLDIwIDAgMSwwIC0yMCwwIiBzdHJva2U9InJnYmEoMjQ5LCAxNjgsIDE4NCwgMC4yKSIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=')] opacity-50"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 pt-20 pb-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <div 
-              className={`transition-opacity duration-500 ${
-                isTransitioning ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <div className="inline-block">
-                <span className="bg-pink-100 text-pink-800 text-sm font-medium px-4 py-1 rounded-full">
-                  {slides[currentSlide].badge}
-                </span>
-              </div>
-              <h1 className="mt-6 text-4xl lg:text-5xl font-bold text-gray-900 font-japanese leading-tight">
-                {slides[currentSlide].title}
-              </h1>
-              <p className="mt-6 text-lg text-gray-600">
-                {slides[currentSlide].description}
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors">
-                  Start Application
-                </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full hover:border-pink-600 hover:text-pink-600 transition-colors">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
+      <div className="relative max-w-7xl mx-auto px-4 pt-8 pb-16 lg:pt-20 lg:pb-32">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Image Section - Moved up for mobile */}
+          <div className="relative order-1 lg:order-2 w-full">
             <div className="absolute inset-0 bg-pink-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <div className={`transition-opacity duration-500 ${
               isTransitioning ? 'opacity-0' : 'opacity-100'
@@ -102,26 +75,26 @@ const HeroCarousel = () => {
               <img 
                 src={slides[currentSlide].image}
                 alt="Students in Japan"
-                className="relative rounded-3xl shadow-2xl"
+                className="relative rounded-3xl shadow-2xl w-full h-[300px] md:h-[400px] lg:h-auto object-cover"
               />
             </div>
             
             {/* Navigation Arrows */}
             <button 
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110 z-10"
             >
               <ChevronLeft className="w-6 h-6 text-gray-800" />
             </button>
             <button 
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110 z-10"
             >
               <ChevronRight className="w-6 h-6 text-gray-800" />
             </button>
 
             {/* Dots Navigation with Progress Bar */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {slides.map((_, index) => (
                 <button
                   key={index}
@@ -135,12 +108,40 @@ const HeroCarousel = () => {
               ))}
             </div>
           </div>
+
+          {/* Text Content - Moved down for mobile */}
+          <div className="text-center lg:text-left order-2 lg:order-1 mt-8 lg:mt-0">
+            <div 
+              className={`transition-opacity duration-500 ${
+                isTransitioning ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
+              <div className="inline-block">
+                <span className="bg-pink-100 text-pink-800 text-sm font-medium px-4 py-1 rounded-full">
+                  {slides[currentSlide].badge}
+                </span>
+              </div>
+              <h1 className="mt-6 text-3xl lg:text-5xl font-bold text-gray-900 font-japanese leading-tight">
+                {slides[currentSlide].title}
+              </h1>
+              <p className="mt-6 text-lg text-gray-600">
+                {slides[currentSlide].description}
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors transform hover:scale-105">
+                  Start Application
+                </button>
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full hover:border-pink-600 hover:text-pink-600 transition-colors transform hover:scale-105">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 const HomePage = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
