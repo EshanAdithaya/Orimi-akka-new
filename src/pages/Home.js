@@ -244,6 +244,86 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+      {/* How to Join Section */}
+      <div className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 font-japanese">
+              How to Join
+            </h2>
+            <div className="mt-4 w-24 h-1 bg-pink-600 mx-auto rounded-full"></div>
+            <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+              Follow these simple steps to begin your journey to study in Japan
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-pink-200"></div>
+
+            {/* Timeline steps */}
+            {[
+              {
+                step: "1",
+                title: "Initial Consultation",
+                description: "Schedule a free consultation with our education advisors to discuss your goals and requirements."
+              },
+              {
+                step: "2",
+                title: "Document Preparation",
+                description: "We'll help you prepare all necessary documents for university application and visa process."
+              },
+              {
+                step: "3",
+                title: "Language Training",
+                description: "Begin your Japanese language courses while your application is being processed."
+              },
+              {
+                step: "4",
+                title: "University Application",
+                description: "We'll submit your applications to selected universities and follow up until acceptance."
+              },
+              {
+                step: "5",
+                title: "Visa Processing",
+                description: "Once accepted, we'll assist with your student visa application process."
+              }
+            ].map((item, index) => (
+              <div key={index} className={`relative flex md:items-center mb-12 ${
+                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              }`}>
+                <div className="flex-1">
+                  <div className={`md:${index % 2 === 0 ? 'pr-8' : 'pl-8'} 
+                    p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow
+                    border-2 border-pink-100 hover:border-pink-300`}>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="absolute md:static left-0 md:flex-none flex items-center justify-center w-8 h-8 md:w-12 md:h-12 
+                  rounded-full bg-pink-600 text-white font-bold transform md:translate-x-0 -translate-x-1/2
+                  md:mx-4 z-10">
+                  {item.step}
+                </div>
+
+                <div className="flex-1 md:block hidden"></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors">
+              Start Your Journey Now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
