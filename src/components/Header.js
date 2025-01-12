@@ -40,7 +40,7 @@ const Header = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center space-x-2">
             <img 
-              src="logo.png" 
+              src="./logo.png" 
               alt="Logo" 
               className="h-12 w-auto object-contain" // adjusted size and added object-contain
             />
