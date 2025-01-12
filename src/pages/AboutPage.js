@@ -1,6 +1,5 @@
 import React from 'react';
 import { Globe2, Award, Users, Target, BookOpen, Clock } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 
 const AboutPage = () => {
   const milestones = [
@@ -28,6 +27,19 @@ const AboutPage = () => {
       description: "We maintain high standards in our services and partner only with top-tier institutions."
     }
   ];
+
+  // Inline Card components
+  const Card = ({ children, className }) => (
+    <div className={`bg-white rounded-lg shadow-sm border ${className}`}>
+      {children}
+    </div>
+  );
+
+  const CardContent = ({ children, className }) => (
+    <div className={`${className}`}>
+      {children}
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
