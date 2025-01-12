@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +26,10 @@ const Header = () => {
   const handleNavigation = (path) => {
     navigate(path);
     setIsNavOpen(false);
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path;
   };
 
   return (
@@ -50,7 +55,11 @@ const Header = () => {
               <button 
                 key={item.label}
                 onClick={() => handleNavigation(item.path)}
-                className="text-gray-700 hover:text-pink-600 transition-colors font-medium"
+                className={`transition-colors font-medium ${
+                  isActive(item.path)
+                    ? 'text-pink-600'
+                    : 'text-gray-700 hover:text-pink-600'
+                }`}
               >
                 {item.label}
               </button>
@@ -80,7 +89,11 @@ const Header = () => {
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.path)}
-                className="block w-full text-left py-2 text-gray-700 hover:text-pink-600"
+                className={`block w-full text-left py-2 ${
+                  isActive(item.path)
+                    ? 'text-pink-600'
+                    : 'text-gray-700 hover:text-pink-600'
+                }`}
               >
                 {item.label}
               </button>

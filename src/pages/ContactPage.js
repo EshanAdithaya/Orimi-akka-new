@@ -11,6 +11,7 @@ import {
   Linkedin,
   Check
 } from 'lucide-react';
+import Header from '../components/Header';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -61,7 +62,8 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen bg-gray-50 ">
+      <Header />
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-pink-50 to-white">
         <div className="max-w-7xl mx-auto px-4 py-20">

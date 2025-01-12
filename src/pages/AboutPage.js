@@ -1,5 +1,6 @@
 import React from 'react';
 import { Globe2, Award, Users, Target, BookOpen, Clock } from 'lucide-react';
+import Header from '../components/Header';
 
 const AboutPage = () => {
   const milestones = [
@@ -42,7 +43,8 @@ const AboutPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen bg-gray-50 ">
+      <Header />
       {/* Hero Section */}
       <div className="relative bg-gradient-to-b from-pink-50 to-white">
         <div className="max-w-7xl mx-auto px-4 py-24">
