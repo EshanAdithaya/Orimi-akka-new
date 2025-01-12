@@ -12,6 +12,7 @@ import {
   Check
 } from 'lucide-react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -262,6 +263,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

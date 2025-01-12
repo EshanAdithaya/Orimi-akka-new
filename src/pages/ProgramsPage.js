@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Filter, Book, Clock, CircleDollarSign, GraduationCap, Building2, ChevronDown, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ProgramsPage = () => {
   const [selectedType, setSelectedType] = useState('All');
@@ -203,6 +204,7 @@ const ProgramsPage = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

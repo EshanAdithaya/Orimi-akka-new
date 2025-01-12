@@ -1,6 +1,7 @@
 import React from 'react';
 import { Globe2, Award, Users, Target, BookOpen, Clock } from 'lucide-react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const AboutPage = () => {
   const milestones = [
@@ -135,6 +136,7 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

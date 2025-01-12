@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Cherry, Users, GraduationCap, Building2, Award, ChevronRight, MapPin, ChevronLeft } from 'lucide-react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -324,6 +325,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
