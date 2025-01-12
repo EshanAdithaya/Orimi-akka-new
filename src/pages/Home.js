@@ -29,7 +29,11 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-20">
             <div className="flex items-center space-x-2">
-              <Cherry className="h-8 w-8 text-pink-600" />
+            <img 
+                src="./logo.png" 
+                alt="Logo" 
+                className="relative rounded-3xl shadow-2xl w-12 h-6"
+              />
               <span className="text-xl font-japanese font-medium">
                 Orimi Sasaki
               </span>
@@ -72,7 +76,7 @@ const HomePage = () => {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className="block py-2 text-gray-700 hover:text-pink-600"
-                  onClick={() => setIsNavOpen(false)}
+                  onClick={() => setIsNavOpen(true)}
                 >
                   {item}
                 </a>
@@ -113,7 +117,7 @@ const HomePage = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-pink-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
               <img 
-                src="/api/placeholder/600/400" 
+                src="https://uchi.imgix.net/properties/30_2023-10-24-051426_vwbl.png?crop=focalpoint&domain=uchi.imgix.net&fit=crop&fm=webp&fp-x=0.5&fp-y=0.5&h=576&ixlib=php-3.3.1&q=60&usm=20&w=768" 
                 alt="Students in Japan" 
                 className="relative rounded-3xl shadow-2xl"
               />
