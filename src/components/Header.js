@@ -42,7 +42,7 @@ const Header = () => {
             <img 
               src="./logo.png" 
               alt="Logo" 
-              className="relative rounded-3xl shadow-2xl w-12 h-6"
+              className="h-12 w-auto object-contain" // adjusted size and added object-contain
             />
             <span className="text-xl font-japanese font-medium">
               Orimi Sasaki
