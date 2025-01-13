@@ -1,74 +1,49 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import siteConfig from '../config/siteConfig';
 
 const Footer = () => {
   const navigate = useNavigate();
 
-  // Debug environment variables
-  console.log('Environment Variables:', {
-    email: process.env.REACT_APP_EMAIL,
-    phone: process.env.REACT_APP_PHONE,
-    address: process.env.REACT_APP_ADDRESS,
-    facebook: process.env.REACT_APP_FACEBOOK_URL,
-  });
-
-  const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/AboutPage' },
-    { name: 'Programs', path: '/ProgramsPage' },
-    { name: 'Contact', path: '/ContactPage' },
-    { name: 'Privacy Policy', path: '/privacy' },
-  ];
-
-  const programs = [
-    'Undergraduate Programs',
-    'Graduate Programs',
-    'Language Courses',
-    'Summer Schools',
-    'Exchange Programs'
-  ];
-
-  // Contact info with fallback values
-  const contactInfo = [
-    { 
-      icon: <Mail className="w-5 h-5" />, 
-      text: process.env.REACT_APP_EMAIL || 'info@orimisasaki.com',
-      href: `mailto:${process.env.REACT_APP_EMAIL || 'info@orimisasaki.com'}`
-    },
-    { 
-      icon: <Phone className="w-5 h-5" />, 
-      text: process.env.REACT_APP_PHONE || '+94 11 234 5678',
-      href: `tel:${process.env.REACT_APP_PHONE || '+94 11 234 5678'}`
-    },
-    { 
-      icon: <MapPin className="w-5 h-5" />, 
-      text: process.env.REACT_APP_ADDRESS || 'Colombo 03, Sri Lanka',
-      href: `https://maps.google.com/?q=${encodeURIComponent(process.env.REACT_APP_ADDRESS || 'Colombo 03, Sri Lanka')}`
-    },
-  ];
-
-  // Social links with fallback values
   const socialLinks = [
     { 
       icon: <Facebook className="w-5 h-5" />, 
-      url: process.env.REACT_APP_FACEBOOK_URL || 'https://facebook.com/orimisasaki',
+      url: siteConfig.socialMedia.facebook,
       name: 'Facebook'
     },
     { 
       icon: <Twitter className="w-5 h-5" />, 
-      url: process.env.REACT_APP_TWITTER_URL || 'https://twitter.com/orimisasaki',
+      url: siteConfig.socialMedia.twitter,
       name: 'Twitter'
     },
     { 
       icon: <Instagram className="w-5 h-5" />, 
-      url: process.env.REACT_APP_INSTAGRAM_URL || 'https://instagram.com/orimisasaki',
+      url: siteConfig.socialMedia.instagram,
       name: 'Instagram'
     },
     { 
       icon: <Linkedin className="w-5 h-5" />, 
-      url: process.env.REACT_APP_LINKEDIN_URL || 'https://linkedin.com/company/orimisasaki',
+      url: siteConfig.socialMedia.linkedin,
       name: 'LinkedIn'
+    },
+  ];
+
+  const contactInfo = [
+    { 
+      icon: <Mail className="w-5 h-5" />, 
+      text: siteConfig.contact.email,
+      href: `mailto:${siteConfig.contact.email}`
+    },
+    { 
+      icon: <Phone className="w-5 h-5" />, 
+      text: siteConfig.contact.phone,
+      href: `tel:${siteConfig.contact.phone}`
+    },
+    { 
+      icon: <MapPin className="w-5 h-5" />, 
+      text: siteConfig.contact.address,
+      href: `https://maps.google.com/?q=${encodeURIComponent(siteConfig.contact.address)}`
     },
   ];
 
@@ -81,16 +56,15 @@ const Footer = () => {
             <div className="flex items-center space-x-2">
               <img
                 src="/logo.png"
-                alt="Orimi Sasaki Logo"
+                alt={`${siteConfig.companyName} Logo`}
                 className="h-10 w-10 object-contain"
               />
               <span className="text-xl font-japanese font-medium text-white">
-                Orimi Sasaki
+                {siteConfig.companyName}
               </span>
             </div>
             <p className="text-sm leading-relaxed">
-              Your trusted partner for educational opportunities in Japan. 
-              We bridge cultures and create futures through quality education.
+              {siteConfig.companyTagline}
             </p>
             <div className="flex space-x-4 pt-2">
               {socialLinks.map((social, index) => (
@@ -112,7 +86,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
+              {siteConfig.navigation.main.map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => navigate(link.path)}
@@ -129,7 +103,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Our Programs</h3>
             <ul className="space-y-2">
-              {programs.map((program) => (
+              {siteConfig.programs.map((program) => (
                 <li key={program}>
                   <button
                     onClick={() => navigate('/ProgramsPage')}
@@ -169,7 +143,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm">
-              © {new Date().getFullYear()} Orimi Sasaki. All rights reserved.
+              © {new Date().getFullYear()} {siteConfig.companyName}. All rights reserved.
             </div>
             <a 
               href="https://soluzent.com" 
