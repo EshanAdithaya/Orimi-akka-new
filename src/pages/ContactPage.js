@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import siteConfig from '../config/siteConfig';
 
 const ContactPage = () => {
   useEffect(() => {
@@ -30,9 +31,42 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    // Create formatted message for WhatsApp
+    const message = `
+*New Contact Form Submission*
+------------------------
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*Subject:* ${formData.subject}
+------------------------
+*Message:*
+${formData.message}
+    `.trim();
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // WhatsApp API URL with your number
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=94766057574&text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+
+    // Show success message
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      // Clear form after submission
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    }, 3000);
   };
 
   const handleChange = (e) => {
@@ -42,32 +76,21 @@ const ContactPage = () => {
     });
   };
 
+  // Get offices data from siteConfig
   const offices = [
     {
       city: 'Colombo',
-      address: '123 Galle Road, Colombo 03',
-      phone: '+94 11 234 5678',
-      email: 'colombo@orimisasaki.com',
-      hours: 'Mon-Fri: 9:00 AM - 5:00 PM'
+      address: siteConfig.contact.address,
+      phone: siteConfig.contact.phone,
+      email: siteConfig.contact.email,
+      hours: siteConfig.contact.workingHours
     },
-    {
-      city: 'Kandy',
-      address: '45 Temple Street, Kandy',
-      phone: '+94 81 234 5678',
-      email: 'kandy@orimisasaki.com',
-      hours: 'Mon-Fri: 9:00 AM - 5:00 PM'
-    },
-    {
-      city: 'Tokyo',
-      address: '1-2-3 Shibuya, Tokyo 150-0002',
-      phone: '+81 3 1234 5678',
-      email: 'tokyo@orimisasaki.com',
-      hours: 'Mon-Fri: 9:00 AM - 6:00 PM'
-    }
+    // ... other offices
   ];
 
+  // Rest of your component code remains the same
   return (
-    <div className="min-h-screen bg-gray-50 ">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-pink-50 to-white">
@@ -184,6 +207,7 @@ const ContactPage = () => {
             </form>
           </div>
 
+
           {/* Office Locations */}
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Our Offices</h2>
@@ -228,9 +252,9 @@ const ContactPage = () => {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Live Chat</h3>
               <p className="text-gray-600 mb-4">Chat with our counselors online</p>
-              <button className="text-pink-600 font-medium hover:text-pink-700">
+              <a href="https://wa.me/0766057574"><button className="text-pink-600 font-medium hover:text-pink-700">
                 Start Chat
-              </button>
+              </button></a>
             </div>
 
             {/* Social Media */}
