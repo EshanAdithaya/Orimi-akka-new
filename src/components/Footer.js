@@ -5,6 +5,14 @@ import { useNavigate } from 'react-router-dom';
 const Footer = () => {
   const navigate = useNavigate();
 
+  // Debug environment variables
+  console.log('Environment Variables:', {
+    email: process.env.REACT_APP_EMAIL,
+    phone: process.env.REACT_APP_PHONE,
+    address: process.env.REACT_APP_ADDRESS,
+    facebook: process.env.REACT_APP_FACEBOOK_URL,
+  });
+
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/AboutPage' },
@@ -21,22 +29,51 @@ const Footer = () => {
     'Exchange Programs'
   ];
 
+  // Contact info with fallback values
   const contactInfo = [
-    { icon: <Mail className="w-5 h-5" />, text: process.env.REACT_APP_EMAIL },
-    { icon: <Phone className="w-5 h-5" />, text: process.env.REACT_APP_PHONE },
-    { icon: <MapPin className="w-5 h-5" />, text: process.env.REACT_APP_ADDRESS },
+    { 
+      icon: <Mail className="w-5 h-5" />, 
+      text: process.env.REACT_APP_EMAIL || 'info@orimisasaki.com',
+      href: `mailto:${process.env.REACT_APP_EMAIL || 'info@orimisasaki.com'}`
+    },
+    { 
+      icon: <Phone className="w-5 h-5" />, 
+      text: process.env.REACT_APP_PHONE || '+94 11 234 5678',
+      href: `tel:${process.env.REACT_APP_PHONE || '+94 11 234 5678'}`
+    },
+    { 
+      icon: <MapPin className="w-5 h-5" />, 
+      text: process.env.REACT_APP_ADDRESS || 'Colombo 03, Sri Lanka',
+      href: `https://maps.google.com/?q=${encodeURIComponent(process.env.REACT_APP_ADDRESS || 'Colombo 03, Sri Lanka')}`
+    },
   ];
 
+  // Social links with fallback values
   const socialLinks = [
-    { icon: <Facebook className="w-5 h-5" />, url: process.env.REACT_APP_FACEBOOK_URL },
-    { icon: <Twitter className="w-5 h-5" />, url: process.env.REACT_APP_TWITTER_URL },
-    { icon: <Instagram className="w-5 h-5" />, url: process.env.REACT_APP_INSTAGRAM_URL },
-    { icon: <Linkedin className="w-5 h-5" />, url: process.env.REACT_APP_LINKEDIN_URL },
+    { 
+      icon: <Facebook className="w-5 h-5" />, 
+      url: process.env.REACT_APP_FACEBOOK_URL || 'https://facebook.com/orimisasaki',
+      name: 'Facebook'
+    },
+    { 
+      icon: <Twitter className="w-5 h-5" />, 
+      url: process.env.REACT_APP_TWITTER_URL || 'https://twitter.com/orimisasaki',
+      name: 'Twitter'
+    },
+    { 
+      icon: <Instagram className="w-5 h-5" />, 
+      url: process.env.REACT_APP_INSTAGRAM_URL || 'https://instagram.com/orimisasaki',
+      name: 'Instagram'
+    },
+    { 
+      icon: <Linkedin className="w-5 h-5" />, 
+      url: process.env.REACT_APP_LINKEDIN_URL || 'https://linkedin.com/company/orimisasaki',
+      name: 'LinkedIn'
+    },
   ];
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -63,6 +100,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-pink-500 transition-colors"
+                  aria-label={social.name}
                 >
                   {social.icon}
                 </a>
@@ -93,9 +131,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {programs.map((program) => (
                 <li key={program}>
-                  <a href="#" className="hover:text-pink-500 transition-colors text-sm">
+                  <button
+                    onClick={() => navigate('/ProgramsPage')}
+                    className="hover:text-pink-500 transition-colors text-sm text-left"
+                  >
                     {program}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -106,9 +147,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
             <ul className="space-y-3">
               {contactInfo.map((info, index) => (
-                <li key={index} className="flex items-center space-x-3">
-                  <span className="text-pink-500">{info.icon}</span>
-                  <span className="text-sm">{info.text}</span>
+                <li key={index}>
+                  <a 
+                    href={info.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 hover:text-pink-500 transition-colors"
+                  >
+                    <span className="text-pink-500">{info.icon}</span>
+                    <span className="text-sm">{info.text}</span>
+                  </a>
                 </li>
               ))}
             </ul>
