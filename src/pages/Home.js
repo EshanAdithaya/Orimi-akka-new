@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Cherry, Users, GraduationCap, Building2, Award, ChevronRight, MapPin, ChevronLeft } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const HeroCarousel = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -128,10 +130,13 @@ const HeroCarousel = () => {
                 {slides[currentSlide].description}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors transform hover:scale-105">
+              <button 
+                  onClick={() => navigate('/newpplication')} 
+                  className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors">
                   Start Application
                 </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full hover:border-pink-600 hover:text-pink-600 transition-colors transform hover:scale-105">
+                <button
+                  onClick={() => navigate('/ProgramsPage')}  className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full hover:border-pink-600 hover:text-pink-600 transition-colors transform hover:scale-105">
                   Learn More
                 </button>
               </div>
@@ -143,6 +148,7 @@ const HeroCarousel = () => {
   );
 };
 const HomePage = () => {
+  const navigate = useNavigate();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -320,7 +326,9 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-12">
-            <button className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors">
+            <button 
+             onClick={() => navigate('/newpplication')} 
+             className="bg-pink-600 text-white px-8 py-3 rounded-full hover:bg-pink-700 transition-colors">
               Start Your Journey Now
             </button>
           </div>

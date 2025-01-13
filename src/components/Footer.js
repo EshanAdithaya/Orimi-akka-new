@@ -22,9 +22,16 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: <Mail className="w-5 h-5" />, text: 'info@orimisasaki.com' },
-    { icon: <Phone className="w-5 h-5" />, text: '+94 11 234 5678' },
-    { icon: <MapPin className="w-5 h-5" />, text: 'Colombo 03, Sri Lanka' },
+    { icon: <Mail className="w-5 h-5" />, text: process.env.REACT_APP_EMAIL },
+    { icon: <Phone className="w-5 h-5" />, text: process.env.REACT_APP_PHONE },
+    { icon: <MapPin className="w-5 h-5" />, text: process.env.REACT_APP_ADDRESS },
+  ];
+
+  const socialLinks = [
+    { icon: <Facebook className="w-5 h-5" />, url: process.env.REACT_APP_FACEBOOK_URL },
+    { icon: <Twitter className="w-5 h-5" />, url: process.env.REACT_APP_TWITTER_URL },
+    { icon: <Instagram className="w-5 h-5" />, url: process.env.REACT_APP_INSTAGRAM_URL },
+    { icon: <Linkedin className="w-5 h-5" />, url: process.env.REACT_APP_LINKEDIN_URL },
   ];
 
   return (
@@ -49,18 +56,17 @@ const Footer = () => {
               We bridge cultures and create futures through quality education.
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="hover:text-pink-500 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-pink-500 transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-pink-500 transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-pink-500 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
+              {socialLinks.map((social, index) => (
+                <a 
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-pink-500 transition-colors"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 

@@ -4,7 +4,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ProgramsPage from './pages/ProgramsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-
+import ApplicationForm from './components/ApplicationForm';
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/ProgramsPage" element={<ProgramsPage />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/newpplication" element={<ApplicationForm />} />
       </Routes>
     </BrowserRouter>
   );
